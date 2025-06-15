@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jagdish Prajapati - Professional Portfolio</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.4;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .profile-section {
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: white;
+            border: 4px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .name {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #2c3e50, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .title {
+            font-size: 1.1em;
+            color: #7f8c8d;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #555;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 20px;
+            background: rgba(102, 126, 234, 0.1);
+            font-size: 0.9em;
+        }
+
+        .contact-item:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+            color: #667eea;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-3px);
+        }
+
+        .section-title {
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #667eea;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: #764ba2;
+        }
+
+        .summary {
+            font-size: 0.95em;
+            line-height: 1.5;
+            color: #555;
+            text-align: justify;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 15px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .skill-category h3 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .skill-category:hover h3 {
+            color: white;
+        }
+
+        .skill-list {
+            list-style: none;
+            font-size: 0.9em;
+        }
+
+        .skill-list li {
+            padding: 2px 0;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .skill-list li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-size: 0.8em;
+        }
+
+        .skill-category:hover .skill-list li::before {
+            color: white;
+        }
+
+        .experience-item, .project-item {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover, .project-item:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateX(8px);
+        }
+
+        .job-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 3px;
+        }
+
+        .experience-item:hover .job-title,
+        .project-item:hover .job-title {
+            color: white;
+        }
+
+        .company {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 3px;
+            font-size: 0.95em;
+        }
+
+        .experience-item:hover .company,
+        .project-item:hover .company {
+            color: #f8f9fa;
+        }
+
+        .date {
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+
+        .experience-item:hover .date,
+        .project-item:hover .date {
+            color: #e9ecef;
+        }
+
+        .description {
+            line-height: 1.4;
+            font-size: 0.9em;
+        }
+
+        .description p {
+            margin-bottom: 3px;
+        }
+
+        .education-item {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .degree {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 3px;
+        }
+
+        .education-item:hover .degree {
+            color: white;
+        }
+
+        .institution {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 3px;
+            font-size: 0.95em;
+        }
+
+        .education-item:hover .institution {
+            color: #f8f9fa;
+        }
+
+        .leadership-item {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .leadership-item:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .leadership-title {
+            font-size: 1em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .leadership-item:hover .leadership-title {
+            color: white;
+        }
+
+        .leadership-item .description {
+            font-size: 0.85em;
+        }
+
+        .download-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 20px 15px;
+            }
+            
+            .name {
+                font-size: 1.8em;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .download-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 10px 15px;
+            }
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) { width: 60px; height: 60px; top: 20%; left: 10%; animation-delay: 0s; }
+        .shape:nth-child(2) { width: 40px; height: 40px; top: 60%; left: 80%; animation-delay: 2s; }
+        .shape:nth-child(3) { width: 30px; height: 30px; top: 80%; left: 20%; animation-delay: 4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Optimized Print styles for single page */
+        @media print {
+            @page {
+                size: A4;
+                margin: 0.3in;
+            }
+            
+            body {
+                background: white !important;
+                font-size: 9px !important;
+                line-height: 1.2 !important;
+                color: #333 !important;
+            }
+            
+            .floating-shapes, .download-btn {
+                display: none !important;
+            }
+            
+            .container {
+                max-width: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .header, .section {
+                background: white !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                margin-bottom: 8px !important;
+                padding: 8px 0 !important;
+                page-break-inside: avoid;
+            }
+            
+            .header::before {
+                display: none;
+            }
+            
+            .profile-image {
+                width: 60px !important;
+                height: 60px !important;
+                margin-bottom: 5px !important;
+                font-size: 20px !important;
+            }
+            
+            .name {
+                font-size: 18px !important;
+                color: #2c3e50 !important;
+                background: none !important;
+                -webkit-text-fill-color: #2c3e50 !important;
+                margin-bottom: 2px !important;
+            }
+            
+            .title {
+                font-size: 10px !important;
+                margin-bottom: 5px !important;
+            }
+            
+            .contact-info {
+                flex-direction: row !important;
+                justify-content: center !important;
+                gap: 8px !important;
+                font-size: 8px !important;
+                margin-top: 5px !important;
+            }
+            
+            .contact-item {
+                background: none !important;
+                padding: 0 !important;
+                color: #555 !important;
+                border-radius: 0 !important;
+            }
+            
+            .section-title {
+                font-size: 12px !important;
+                border-bottom: 1px solid #667eea !important;
+                margin-bottom: 6px !important;
+                padding-bottom: 2px !important;
+            }
+            
+            .section-title::after {
+                display: none !important;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 10px !important;
+            }
+            
+            .skill-category, .experience-item, .project-item, .education-item, .leadership-item {
+                background: white !important;
+                color: #333 !important;
+                padding: 4px 0 !important;
+                margin-bottom: 4px !important;
+                border-radius: 0 !important;
+                page-break-inside: avoid;
+            }
+            
+            .skill-category h3, .job-title, .degree, .leadership-title {
+                color: #2c3e50 !important;
+                font-size: 10px !important;
+                margin-bottom: 2px !important;
+            }
+            
+            .company, .institution {
+                color: #667eea !important;
+                font-size: 9px !important;
+                margin-bottom: 1px !important;
+            }
+            
+            .date {
+                font-size: 8px !important;
+                margin-bottom: 3px !important;
+            }
+            
+            .summary {
+                font-size: 9px !important;
+                text-align: left !important;
+                line-height: 1.3 !important;
+            }
+            
+            .description {
+                font-size: 8px !important;
+                line-height: 1.2 !important;
+            }
+            
+            .description p {
+                margin-bottom: 1px !important;
+            }
+            
+            .skill-list {
+                font-size: 8px !important;
+            }
+            
+            .skill-list li {
+                padding: 1px 0 !important;
+                padding-left: 10px !important;
+            }
+            
+            .skill-list li::before {
+                font-size: 6px !important;
+            }
+            
+            /* Ensure single page */
+            .section {
+                break-inside: avoid;
+            }
+            
+            /* Compact spacing for single page */
+            .experience-item:not(:last-child),
+            .project-item:not(:last-child),
+            .education-item:not(:last-child),
+            .leadership-item:not(:last-child) {
+                margin-bottom: 2px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <div class="profile-section">
+                <div class="profile-image">
+                    <img src="new.jpg" alt="Jagdish Prajapati" style="width: 100%; height: 100%; border-radius: 50%;">
+                </div>
+                <h1 class="name">Jagdish Prajapati</h1>
+                <p class="title">Professional • Technology Enthusiast • Problem Solver</p>
+                <div class="contact-info">
+                    <a href="mailto:jagdishprajapati1711@gmail.com" class="contact-item">
+                        📧 jagdishprajapati1711@gmail.com
+                    </a>
+                    <a href="tel:7977895808" class="contact-item">
+                        📱 7977895808
+                    </a>
+                    <span class="contact-item">
+                        📍 Mumbai, Maharashtra, India
+                    </span>
+                    <a href="https://linkedin.com/in/jagdish-prajapati-145260257" class="contact-item" target="_blank">
+                        💼 LinkedIn
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">👤 Professional Summary</h2>
+            <p class="summary">
+                Results-oriented professional with strong analytical and technical skills, experienced in technology implementation, process optimization, and cross-functional collaboration. Proficient in Python, JavaScript, Power BI, and database management with proven ability to deliver actionable solutions and insights in fast-paced environments.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">⚙️ Core Competencies</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Technical Skills</h3>
+                    <ul class="skill-list">
+                        <li>Python Programming</li>
+                        <li>JavaScript & Web Technologies</li>
+                        <li>HTML, CSS, SQL</li>
+                        <li>Power BI & Data Visualization</li>
+                        <li>API Integration</li>
+                        <li>Process Automation</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Professional Skills</h3>
+                    <ul class="skill-list">
+                        <li>Project Management</li>
+                        <li>Team Collaboration</li>
+                        <li>Problem Solving</li>
+                        <li>Strategic Planning</li>
+                        <li>Process Improvement</li>
+                        <li>Leadership</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">💼 Professional Experience</h2>
+            
+            <div class="experience-item">
+                <h3 class="job-title">Project Manager Intern</h3>
+                <p class="company">Thomas Assessment Company</p>
+                <p class="date">June 2025 - July 2025</p>
+                <div class="description">
+                    <p>• Coordinated cross-functional teams and managed project timelines for successful delivery</p>
+                    <p>• Improved team productivity by 25% through streamlined workflows and tracking systems</p>
+                    <p>• Facilitated agile project management with daily standups and sprint planning</p>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <h3 class="job-title">Technical Analyst</h3>
+                <p class="company">People Metrics Pvt Ltd</p>
+                <p class="date">Dec 2024 - Apr 2025</p>
+                <div class="description">
+                    <p>• Analyzed 500K+ record datasets to generate actionable business insights</p>
+                    <p>• Automated data workflows using Python, reducing manual processing time by 60%</p>
+                    <p>• Created interactive Power BI dashboards for executive reporting and KPI tracking</p>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <h3 class="job-title">Software Developer</h3>
+                <p class="company">Chalroid Technologies Pvt Ltd (Remote)</p>
+                <p class="date">Dec 2023 - Jan 2024</p>
+                <div class="description">
+                    <p>• Developed responsive web applications using HTML5, CSS3, JavaScript, and Python</p>
+                    <p>• Integrated RESTful APIs and optimized database queries for improved performance</p>
+                    <p>• Collaborated with UI/UX designers for pixel-perfect implementation</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">🚀 Key Projects</h2>
+            
+            <div class="project-item">
+                <h3 class="job-title">YouTube Summarizer Application</h3>
+                <p class="company">AI/ML Personal Project</p>
+                <div class="description">
+                    <p>• Built intelligent content summarization tool using Python and NLP with 85% accuracy</p>
+                    <p>• Implemented YouTube API integration for automatic transcript extraction</p>
+                    <p>• Optimized processing time by 40% through efficient algorithms and caching</p>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <h3 class="job-title">Sales Interactive Dashboard</h3>
+                <p class="company">Business Intelligence Project</p>
+                <div class="description">
+                    <p>• Developed real-time Power BI dashboard handling 100K+ data points with sub-second response</p>
+                    <p>• Created interactive visualizations with KPIs, trend analysis, and geographical heat maps</p>
+                    <p>• Integrated predictive analytics for sales forecasting and automated reporting</p>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <h3 class="job-title">Event Management System</h3>
+                <p class="company">Full-Stack Development Project</p>
+                <div class="description">
+                    <p>• Built comprehensive platform using Django with user authentication and payment integration</p>
+                    <p>• Implemented calendar sync, QR code generation, and automated email notifications</p>
+                    <p>• Created responsive admin dashboard for resource allocation and financial tracking</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">🎓 Education</h2>
+            <div class="education-item">
+                <h3 class="degree">Bachelor in Computer Engineering</h3>
+                <p class="institution">K.J Somaiya Institute of Technology</p>
+                <p class="date">Jun 2022 - Present | CGPA: 8.04</p>
+            </div>
+            <div class="education-item">
+                <h3 class="degree">Higher Secondary Certificate (HSC)</h3>
+                <p class="institution">S.K Somaiya College</p>
+                <p class="date">Jun 2020 - Jun 2022 | Score: 76%</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">🏆 Leadership</h2>
+            <div class="leadership-item">
+                <h3 class="leadership-title">Chief Marketing Officer - IEI Committee</h3>
+                <p class="company">K.J Somaiya Institute of Technology</p>
+                <p class="description">Led marketing initiatives and promotional campaigns, managed event planning resulting in enhanced engagement.</p>
+            </div>
+            <div class="leadership-item">
+                <h3 class="leadership-title">Joint Secretary - NSS Unit</h3>
+                <p class="company">K.J Somaiya Institute of Technology</p>
+                <p class="description">Coordinated community service activities and managed volunteer teams for social impact initiatives.</p>
+            </div>
+        </section>
+    </div>
+
+    <button class="download-btn" onclick="downloadResume()">
+        📄 Download Resume
+    </button>
+
+    <script>
+        function downloadResume() {
+            // Hide the download button temporarily
+            const downloadBtn = document.querySelector('.download-btn');
+            const originalDisplay = downloadBtn.style.display;
+            downloadBtn.style.display = 'none';
+            
+            // Create a temporary print-friendly version
+            const originalTitle = document.title;
+            document.title = 'Jagdish_Prajapati_Resume';
+            
+            // Trigger print dialog
+            window.print();
+            
+            // Restore the download button
+            setTimeout(() => {
+                downloadBtn.style.display = originalDisplay;
+                document.title = originalTitle;
+            }, 1000);
+        }
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]:not(.download-btn)').forEach(anchor => {
+            const href = anchor.getAttribute('href');
+            if (href && href !== '#' && document.querySelector(href)) {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+        });
+
+        // Scroll animation using IntersectionObserver
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.section').forEach((section) => {
+            observer.observe(section);
+        });
+
+        // Add loading effect for sections
+        document.querySelectorAll('.section').forEach((section) => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(15px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+    </script>
+</body>
+</html>
